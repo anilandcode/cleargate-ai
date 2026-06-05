@@ -5,9 +5,14 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 172 nodes · 363 edges · 12 communities (11 shown, 1 thin omitted)
+- 173 nodes · 371 edges · 12 communities (11 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `c9b09e60`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -36,7 +41,7 @@
 ## Surprising Connections (you probably didn't know these)
 - `handleApi()` --calls--> `handleApiRequest()`  [EXTRACTED]
   server.js → lib/apiCore.js
-- `handleAppClick()` --calls--> `startDemoReview()`  [EXTRACTED]
+- `handleAppClick()` --calls--> `saveHumanAction()`  [EXTRACTED]
   app.js → lib/agentRoomStore.js
 - `renderVendorCard()` --calls--> `formatCurrency()`  [EXTRACTED]
   app.js → lib/demoData.js
@@ -49,23 +54,23 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.13
-Nodes (38): exportPacket(), getRoomForVendor(), saveHumanAction(), saveState(), getVendor(), agentInitials(), app, downloadMemo() (+30 more)
+Nodes (38): exportPacket(), getRoomForVendor(), saveState(), startDemoReview(), getVendor(), agentInitials(), app, downloadMemo() (+30 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.18
-Nodes (16): handler(), startDemoReview(), createApiRuntime(), handleApiRequest(), humanActionLabel(), notFound(), ok(), saveRoom() (+8 more)
+Cohesion: 0.17
+Nodes (17): handler(), createApiRuntime(), handleApiRequest(), humanActionLabel(), notFound(), ok(), saveRoom(), requiredBandVars (+9 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.09
 Nodes (21): Agent Roles, API, Architecture, ClearGate AI, code:txt (index.html), code:bash (node server.js), code:txt (http://localhost:3000), code:bash (python3 -m http.server 3000) (+13 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.19
-Nodes (16): AGENT_DEFINITIONS, buildDemoEvents(), buildDemoRoom(), buildInitialRoom(), buildSharedContext(), deriveAgentState(), event(), requiredBandVars (+8 more)
+Cohesion: 0.23
+Nodes (14): AGENT_DEFINITIONS, buildDemoEvents(), buildDemoRoom(), buildInitialRoom(), buildSharedContext(), deriveAgentState(), event(), buildFinalDecision() (+6 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.19
-Nodes (16): createInitialState(), formatHumanAction(), loadState(), resetState(), baseEvidenceLedger, dashboardKpis, formatCurrency(), policyRequirements (+8 more)
+Cohesion: 0.18
+Nodes (17): createInitialState(), formatHumanAction(), loadState(), resetState(), saveHumanAction(), baseEvidenceLedger, dashboardKpis, formatCurrency() (+9 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.25
@@ -92,10 +97,10 @@ Nodes (3): server, sleep(), waitForServer()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `handleApiRequest()` connect `Community 1` to `Community 0`, `Community 3`, `Community 4`, `Community 7`?**
-  _High betweenness centrality (0.089) - this node is a cross-community bridge._
+  _High betweenness centrality (0.088) - this node is a cross-community bridge._
 - **Why does `getVendor()` connect `Community 0` to `Community 1`, `Community 4`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
-- **Why does `buildDemoRoom()` connect `Community 3` to `Community 1`, `Community 4`?**
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
+- **Why does `buildDemoRoom()` connect `Community 3` to `Community 0`, `Community 1`, `Community 4`?**
   _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **What connects `root`, `runtime`, `port` to the rest of the system?**
   _32 weakly-connected nodes found - possible documentation gaps or missing edges._
