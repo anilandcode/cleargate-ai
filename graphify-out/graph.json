@@ -616,6 +616,51 @@
       "norm_label": "sleep()"
     },
     {
+      "label": "build-static.js",
+      "file_type": "code",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L1",
+      "id": "scripts_build_static_js",
+      "community": 12,
+      "norm_label": "build-static.js"
+    },
+    {
+      "label": "root",
+      "file_type": "code",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L5",
+      "id": "scripts_build_static_root",
+      "community": 12,
+      "norm_label": "root"
+    },
+    {
+      "label": "dist",
+      "file_type": "code",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L6",
+      "id": "scripts_build_static_dist",
+      "community": 12,
+      "norm_label": "dist"
+    },
+    {
+      "label": "files",
+      "file_type": "code",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L8",
+      "id": "scripts_build_static_files",
+      "community": 12,
+      "norm_label": "files"
+    },
+    {
+      "label": "directories",
+      "file_type": "code",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L9",
+      "id": "scripts_build_static_directories",
+      "community": 12,
+      "norm_label": "directories"
+    },
+    {
       "label": "demoData.js",
       "file_type": "code",
       "source_file": "lib/demoData.js",
@@ -738,7 +783,7 @@
       "source_file": "lib/agentRoomStore.js",
       "source_location": "L52",
       "id": "lib_agentroomstore_startdemoreview",
-      "community": 0,
+      "community": 1,
       "norm_label": "startdemoreview()"
     },
     {
@@ -963,7 +1008,7 @@
       "source_file": "lib/bandClient.js",
       "source_location": "L1",
       "id": "lib_bandclient_js",
-      "community": 1,
+      "community": 3,
       "norm_label": "bandclient.js"
     },
     {
@@ -972,7 +1017,7 @@
       "source_file": "lib/bandClient.js",
       "source_location": "L3",
       "id": "lib_bandclient_startbandreview",
-      "community": 1,
+      "community": 3,
       "norm_label": "startbandreview()"
     },
     {
@@ -981,7 +1026,7 @@
       "source_file": "lib/bandClient.js",
       "source_location": "L53",
       "id": "lib_bandclient_requiredbandvars",
-      "community": 1,
+      "community": 3,
       "norm_label": "requiredbandvars"
     },
     {
@@ -3268,6 +3313,46 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_build_static_js",
+      "target": "scripts_build_static_root",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "scripts_build_static_js",
+      "target": "scripts_build_static_dist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "scripts_build_static_js",
+      "target": "scripts_build_static_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/build-static.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "scripts_build_static_js",
+      "target": "scripts_build_static_directories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "lib/demoData.js",
       "source_location": "L3",
       "weight": 1.0,
@@ -4032,9 +4117,9 @@
       "source_file": "lib/apiRuntime.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_apiruntime_js",
-      "target": "lib_apicore_js",
-      "confidence_score": 1.0
+      "target": "lib_apicore_js"
     },
     {
       "relation": "imports_from",
@@ -4120,9 +4205,9 @@
       "source_file": "lib/apiRuntime.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_apiruntime_js",
-      "target": "lib_apicore_createapiruntime",
-      "confidence_score": 1.0
+      "target": "lib_apicore_createapiruntime"
     },
     {
       "relation": "imports",
@@ -4637,9 +4722,9 @@
       "source_file": "api/review.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_review_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -4648,9 +4733,9 @@
       "source_file": "api/agent-room/start/index.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_agent_room_start_index_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -4659,9 +4744,9 @@
       "source_file": "api/agent-room/[vendorId]/human-action.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_agent_room_vendorid_human_action_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -4670,9 +4755,9 @@
       "source_file": "api/agent-room/[vendorId]/export.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_agent_room_vendorid_export_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -4681,9 +4766,9 @@
       "source_file": "api/agent-room/[vendorId]/index.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_agent_room_vendorid_index_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -4692,9 +4777,9 @@
       "source_file": "api/agent-room/[vendorId]/replay.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "api_agent_room_vendorid_replay_js",
-      "target": "lib_apiruntime_js",
-      "confidence_score": 1.0
+      "target": "lib_apiruntime_js"
     },
     {
       "relation": "imports_from",
@@ -5502,5 +5587,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c9b09e601916af9c17a5d6e434400f871573494c"
+  "built_at_commit": "f6f81320f1326e9f5103af38a48e033deb946ac5"
 }

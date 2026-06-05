@@ -1,16 +1,16 @@
 # Graph Report - Vendor Brand Edittion  (2026-06-05)
 
 ## Corpus Check
-- 29 files · ~8,296 words
+- 30 files · ~8,393 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 173 nodes · 371 edges · 12 communities (11 shown, 1 thin omitted)
+- 178 nodes · 375 edges · 13 communities (12 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c9b09e60`
+- Built from commit: `f6f81320`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,6 +25,7 @@
 - [[_COMMUNITY_Community 7|Community 7]]
 - [[_COMMUNITY_Community 8|Community 8]]
 - [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 12|Community 12]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `handleApiRequest()` - 27 edges
@@ -41,32 +42,32 @@
 ## Surprising Connections (you probably didn't know these)
 - `handleApi()` --calls--> `handleApiRequest()`  [EXTRACTED]
   server.js → lib/apiCore.js
+- `handleAppClick()` --calls--> `startDemoReview()`  [EXTRACTED]
+  app.js → lib/agentRoomStore.js
 - `handleAppClick()` --calls--> `saveHumanAction()`  [EXTRACTED]
   app.js → lib/agentRoomStore.js
 - `renderVendorCard()` --calls--> `formatCurrency()`  [EXTRACTED]
   app.js → lib/demoData.js
 - `renderVendorSummary()` --calls--> `displayDecision()`  [EXTRACTED]
   app.js → lib/policyEngine.js
-- `renderDecisionPacket()` --calls--> `displayDecision()`  [EXTRACTED]
-  app.js → lib/policyEngine.js
 
-## Communities (12 total, 1 thin omitted)
+## Communities (13 total, 1 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.13
-Nodes (38): exportPacket(), getRoomForVendor(), saveState(), startDemoReview(), getVendor(), agentInitials(), app, downloadMemo() (+30 more)
+Nodes (37): exportPacket(), getRoomForVendor(), saveState(), getVendor(), agentInitials(), app, downloadMemo(), escapeHtml() (+29 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.17
-Nodes (17): handler(), createApiRuntime(), handleApiRequest(), humanActionLabel(), notFound(), ok(), saveRoom(), requiredBandVars (+9 more)
+Cohesion: 0.19
+Nodes (16): handler(), startDemoReview(), createApiRuntime(), handleApiRequest(), humanActionLabel(), notFound(), ok(), saveRoom() (+8 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.09
 Nodes (21): Agent Roles, API, Architecture, ClearGate AI, code:txt (index.html), code:bash (node server.js), code:txt (http://localhost:3000), code:bash (python3 -m http.server 3000) (+13 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.23
-Nodes (14): AGENT_DEFINITIONS, buildDemoEvents(), buildDemoRoom(), buildInitialRoom(), buildSharedContext(), deriveAgentState(), event(), buildFinalDecision() (+6 more)
+Cohesion: 0.19
+Nodes (16): AGENT_DEFINITIONS, buildDemoEvents(), buildDemoRoom(), buildInitialRoom(), buildSharedContext(), deriveAgentState(), event(), requiredBandVars (+8 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.18
@@ -88,8 +89,12 @@ Nodes (9): handleApi(), mimeType(), port, readJson(), root, runtime, sendJson(),
 Cohesion: 0.33
 Nodes (3): server, sleep(), waitForServer()
 
+### Community 12 - "Community 12"
+Cohesion: 0.4
+Nodes (4): directories, dist, files, root
+
 ## Knowledge Gaps
-- **32 isolated node(s):** `root`, `runtime`, `port`, `server`, `state` (+27 more)
+- **36 isolated node(s):** `root`, `runtime`, `port`, `server`, `state` (+31 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -97,13 +102,13 @@ Nodes (3): server, sleep(), waitForServer()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `handleApiRequest()` connect `Community 1` to `Community 0`, `Community 3`, `Community 4`, `Community 7`?**
-  _High betweenness centrality (0.088) - this node is a cross-community bridge._
+  _High betweenness centrality (0.083) - this node is a cross-community bridge._
 - **Why does `getVendor()` connect `Community 0` to `Community 1`, `Community 4`?**
-  _High betweenness centrality (0.066) - this node is a cross-community bridge._
-- **Why does `buildDemoRoom()` connect `Community 3` to `Community 0`, `Community 1`, `Community 4`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `buildDemoRoom()` connect `Community 3` to `Community 1`, `Community 4`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **What connects `root`, `runtime`, `port` to the rest of the system?**
-  _32 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _36 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.13 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

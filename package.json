@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-static.js",
     "start": "node server.js",
     "smoke": "node scripts/smoke-agent-room.js"
   }
