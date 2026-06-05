@@ -1,5 +1,5 @@
 import { handleApiRequest } from "../../../lib/apiCore.js";
-import { runtime } from "../../_runtime.js";
+import { runtime } from "../../../lib/apiRuntime.js";
 
 export default async function handler(req, res) {
   const result = await handleApiRequest({
