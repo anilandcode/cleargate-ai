@@ -1,0 +1,7 @@
+.DS_Store
+.env
+node_modules/
+graphify-out/.graphify_detect.json
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/cache/

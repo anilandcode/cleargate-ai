@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance."
+    />
+    <meta property="og:title" content="ClearGate AI" />
+    <meta
+      property="og:description"
+      content="ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance."
+    />
+    <meta property="og:image" content="/assets/command-center.svg" />
+    <title>ClearGate AI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">CG</div>
+          <div>
+            <p class="eyebrow">Band-powered governance</p>
+            <h1>ClearGate AI</h1>
+          </div>
+        </div>
+        <nav class="side-nav" aria-label="Primary">
+          <button class="nav-item active" data-view="dashboard">Command Center</button>
+          <button class="nav-item" data-view="vendor">Vendor Review</button>
+          <button class="nav-item" data-view="ledger">Evidence Ledger</button>
+          <button class="nav-item" data-view="reports">Passport Export</button>
+        </nav>
+        <div class="sidebar-panel">
+          <p class="eyebrow">Band Room</p>
+          <strong id="sidebar-room-status">Demo ready</strong>
+          <span id="sidebar-room-caption">6 agents configured</span>
+        </div>
+      </aside>
+
+      <main class="main-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Shadow AI governance</p>
+            <h2>Vendor approval command center</h2>
+          </div>
+          <div class="topbar-actions">
+            <button class="button secondary" id="reset-demo" type="button">Reset Demo</button>
+            <button class="button primary" id="judge-demo" type="button">Judge Demo</button>
+          </div>
+        </header>
+
+        <section class="hero-band" aria-label="Product overview">
+          <img src="/assets/command-center.svg" alt="" />
+          <div class="hero-copy">
+            <p class="eyebrow">Band-powered multi-agent workflow</p>
+            <h2>ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance.</h2>
+            <p>
+              Security, legal, finance, procurement, and policy agents collaborate through Band to review
+              unapproved AI tools, gather evidence, and generate an explainable approve, escalate, or block decision.
+            </p>
+            <div class="badge-row" aria-label="Capabilities">
+              <span>Shadow AI governance</span>
+              <span>Vendor risk approval</span>
+              <span>Audit-ready decision packet</span>
+              <span>Human-in-the-loop review</span>
+            </div>
+          </div>
+        </section>
+
+        <div id="app" aria-live="polite"></div>
+      </main>
+    </div>
+
+    <template id="download-template"></template>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

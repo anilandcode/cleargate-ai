@@ -1,0 +1,13 @@
+import { handleApiRequest } from "../../../lib/apiCore.js";
+import { runtime } from "../../_runtime.js";
+
+export default async function handler(req, res) {
+  const result = await handleApiRequest({
+    method: req.method,
+    pathname: "/api/agent-room/start",
+    body: req.body || {},
+    env: process.env,
+    runtime
+  });
+  res.status(result.status).json(result.payload);
+}

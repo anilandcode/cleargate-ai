@@ -1,0 +1,15 @@
+[project]
+name = "cleargate-ai-band-agents"
+version = "0.1.0"
+description = "Sample Band agents for ClearGate AI"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+py-modules = [
+  "discovery_agent",
+  "security_agent",
+  "privacy_legal_agent",
+  "finance_procurement_agent",
+  "policy_gate_agent"
+]
