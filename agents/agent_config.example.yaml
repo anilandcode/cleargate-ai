@@ -1,8 +1,0 @@
-workspace_id: "${BAND_WORKSPACE_ID}"
-room_id: "${BAND_ROOM_ID}"
-agents:
-  discovery: "${BAND_AGENT_DISCOVERY_ID}"
-  security: "${BAND_AGENT_SECURITY_ID}"
-  privacy_legal: "${BAND_AGENT_LEGAL_ID}"
-  finance_procurement: "${BAND_AGENT_FINANCE_ID}"
-  policy_gate: "${BAND_AGENT_POLICY_ID}"

@@ -1,8 +1,11 @@
 .DS_Store
-.env
 node_modules/
 dist/
-graphify-out/.graphify_detect.json
-graphify-out/.graphify_python
-graphify-out/.graphify_root
+.vercel/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 graphify-out/cache/

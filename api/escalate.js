@@ -1,4 +1,4 @@
-const { buildReview } = require("../lib/review-adapter");
+const { createEscalation } = require("../lib/workflow-adapter");
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ async function requestPayload(req) {
   return body ? JSON.parse(body) : {};
 }
 
-module.exports = async function reviewHandler(req, res) {
+module.exports = async function escalationHandler(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 405;
     res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -35,13 +35,13 @@ module.exports = async function reviewHandler(req, res) {
 
   try {
     const payload = await requestPayload(req);
-    const response = await buildReview(payload);
+    const response = await createEscalation(payload);
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.end(JSON.stringify(response));
   } catch (error) {
     res.statusCode = 400;
     res.setHeader("Content-Type", "application/json; charset=utf-8");
-    res.end(JSON.stringify({ error: error.message || "Invalid review request" }));
+    res.end(JSON.stringify({ error: error.message || "Invalid escalation request" }));
   }
 };

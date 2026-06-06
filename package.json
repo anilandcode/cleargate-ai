@@ -1,11 +1,17 @@
 {
   "name": "cleargate-ai",
   "version": "1.0.0",
-  "private": true,
-  "type": "module",
+  "private": false,
+  "description": "ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents.",
   "scripts": {
     "build": "node scripts/build-static.js",
     "start": "node server.js",
-    "smoke": "node scripts/smoke-agent-room.js"
-  }
+    "validate": "node scripts/validate-all.js",
+    "smoke": "node scripts/smoke-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anilandcode/cleargate-ai.git"
+  },
+  "license": "MIT"
 }

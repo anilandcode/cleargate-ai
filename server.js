@@ -1,84 +1,103 @@
-import { createReadStream, existsSync, statSync } from "node:fs";
-import { createServer } from "node:http";
-import { extname, join, normalize } from "node:path";
-import { fileURLToPath } from "node:url";
-import { createApiRuntime, handleApiRequest } from "./lib/apiCore.js";
+const fs = require("fs/promises");
+const http = require("http");
+const path = require("path");
+const { buildReview, integrationMode, reviewIntegrationStatus } = require("./lib/review-adapter");
+const { createEscalation, workflowIntegrationStatus } = require("./lib/workflow-adapter");
 
-const root = fileURLToPath(new URL(".", import.meta.url));
-const runtime = createApiRuntime();
-const port = Number(process.env.PORT || 3000);
+const PORT = Number(process.env.PORT || 3000);
+const ROOT = __dirname;
 
-const server = createServer(async (req, res) => {
-  const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+const MIME_TYPES = {
+  ".css": "text/css; charset=utf-8",
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
+  ".svg": "image/svg+xml; charset=utf-8",
+};
 
-  if (url.pathname === "/healthz" || url.pathname.startsWith("/api/")) {
-    await handleApi(req, res, url.pathname);
-    return;
-  }
+function json(res, statusCode, payload) {
+  const body = JSON.stringify(payload);
+  res.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": Buffer.byteLength(body),
+  });
+  res.end(body);
+}
 
-  serveStatic(url.pathname, res);
-});
-
-server.listen(port, () => {
-  console.log(`ClearGate AI listening on http://localhost:${port}`);
-});
-
-async function handleApi(req, res, pathname) {
-  try {
-    const body = await readJson(req);
-    const result = await handleApiRequest({
-      method: req.method || "GET",
-      pathname,
-      body,
-      env: process.env,
-      runtime
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      if (body.length > 1_000_000) {
+        reject(new Error("Request body too large"));
+        req.destroy();
+      }
     });
-    sendJson(res, result.status, result.payload);
-  } catch (error) {
-    sendJson(res, 500, { ok: false, error: error.message });
-  }
+    req.on("end", () => resolve(body));
+    req.on("error", reject);
+  });
 }
 
-async function readJson(req) {
-  if (!["POST", "PUT", "PATCH"].includes(req.method || "")) return {};
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  const raw = Buffer.concat(chunks).toString("utf8");
-  if (!raw) return {};
-  return JSON.parse(raw);
-}
+async function serveStatic(req, res) {
+  const requestUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  const pathname = decodeURIComponent(requestUrl.pathname === "/" ? "/index.html" : requestUrl.pathname);
+  const filePath = path.normalize(path.join(ROOT, pathname));
 
-function serveStatic(pathname, res) {
-  const requestPath = pathname === "/" ? "/index.html" : pathname;
-  const safePath = normalize(requestPath).replace(/^(\.\.[/\\])+/, "");
-  const filePath = join(root, safePath);
-
-  if (!filePath.startsWith(root) || !existsSync(filePath) || statSync(filePath).isDirectory()) {
-    const fallback = join(root, "index.html");
-    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    createReadStream(fallback).pipe(res);
+  if (!filePath.startsWith(ROOT)) {
+    res.writeHead(403);
+    res.end("Forbidden");
     return;
   }
 
-  res.writeHead(200, { "content-type": mimeType(extname(filePath)) });
-  createReadStream(filePath).pipe(res);
+  try {
+    const body = await fs.readFile(filePath);
+    const type = MIME_TYPES[path.extname(filePath)] || "application/octet-stream";
+    res.writeHead(200, { "Content-Type": type, "Content-Length": body.length });
+    res.end(req.method === "HEAD" ? undefined : body);
+  } catch (error) {
+    res.writeHead(error.code === "ENOENT" ? 404 : 500, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end(error.code === "ENOENT" ? "Not found" : "Server error");
+  }
 }
 
-function sendJson(res, status, payload) {
-  res.writeHead(status, { "content-type": "application/json; charset=utf-8" });
-  res.end(JSON.stringify(payload, null, 2));
-}
+const server = http.createServer(async (req, res) => {
+  if (req.method === "GET" && ["/healthz", "/api/healthz"].includes(req.url)) {
+    json(res, 200, { ok: true, mode: integrationMode(), integrations: reviewIntegrationStatus(), workflow: workflowIntegrationStatus() });
+    return;
+  }
 
-function mimeType(extension) {
-  return {
-    ".html": "text/html; charset=utf-8",
-    ".css": "text/css; charset=utf-8",
-    ".js": "text/javascript; charset=utf-8",
-    ".json": "application/json; charset=utf-8",
-    ".svg": "image/svg+xml; charset=utf-8",
-    ".png": "image/png",
-    ".jpg": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".webp": "image/webp"
-  }[extension] || "application/octet-stream";
-}
+  if (req.method === "POST" && req.url === "/api/review") {
+    try {
+      const body = await readBody(req);
+      const payload = body ? JSON.parse(body) : {};
+      json(res, 200, await buildReview(payload));
+    } catch (error) {
+      json(res, 400, { error: error.message || "Invalid review request" });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && req.url === "/api/escalate") {
+    try {
+      const body = await readBody(req);
+      const payload = body ? JSON.parse(body) : {};
+      json(res, 200, await createEscalation(payload));
+    } catch (error) {
+      json(res, 400, { error: error.message || "Invalid escalation request" });
+    }
+    return;
+  }
+
+  if (req.method === "GET" || req.method === "HEAD") {
+    await serveStatic(req, res);
+    return;
+  }
+
+  json(res, 405, { error: "Method not allowed" });
+});
+
+server.listen(PORT, () => {
+  console.log(`ClearGate AI server running at http://localhost:${PORT}`);
+});

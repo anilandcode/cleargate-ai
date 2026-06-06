@@ -1,79 +1,209 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance."
-    />
-    <meta property="og:title" content="ClearGate AI" />
-    <meta
-      property="og:description"
-      content="ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance."
-    />
-    <meta property="og:image" content="/assets/command-center.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClearGate AI</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Workspace navigation">
-        <div class="brand-lockup">
-          <div class="brand-mark" aria-hidden="true">CG</div>
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="brand-mark">CG</div>
           <div>
-            <p class="eyebrow">Band-powered governance</p>
-            <h1>ClearGate AI</h1>
+            <p class="brand-name">ClearGate AI</p>
+            <p class="brand-subtitle">AI approval gate</p>
           </div>
         </div>
-        <nav class="side-nav" aria-label="Primary">
-          <button class="nav-item active" data-view="dashboard">Command Center</button>
-          <button class="nav-item" data-view="vendor">Vendor Review</button>
-          <button class="nav-item" data-view="ledger">Evidence Ledger</button>
-          <button class="nav-item" data-view="reports">Passport Export</button>
+
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-view-target="inbox">Inbox</button>
+          <button class="nav-item" type="button" data-view-target="reviews">Reviews</button>
+          <button class="nav-item" type="button" data-view-target="evidence">Evidence</button>
+          <button class="nav-item" type="button" data-view-target="policies">Policies</button>
+          <button class="nav-item" type="button" data-view-target="reports">Reports</button>
+          <button class="nav-item" type="button" data-view-target="settings">Settings</button>
         </nav>
-        <div class="sidebar-panel">
-          <p class="eyebrow">Band Room</p>
-          <strong id="sidebar-room-status">Demo ready</strong>
-          <span id="sidebar-room-caption">6 agents configured</span>
+
+        <div class="sidebar-card">
+          <p class="eyebrow">Band agent room</p>
+          <strong>Audit-ready decisions</strong>
+          <span>Security, legal, finance, procurement, and compliance agents coordinate every approval packet.</span>
         </div>
       </aside>
 
-      <main class="main-shell">
+      <div class="workspace">
         <header class="topbar">
-          <div>
-            <p class="eyebrow">Shadow AI governance</p>
-            <h2>Vendor approval command center</h2>
+          <div class="workspace-switcher">
+            <span class="dot live-dot"></span>
+            <span>Acme Security Review</span>
           </div>
+          <label class="global-search">
+            <span>Search</span>
+            <input id="globalSearch" type="search" placeholder="Find tool, source, or policy" />
+          </label>
           <div class="topbar-actions">
-            <button class="button secondary" id="reset-demo" type="button">Reset Demo</button>
-            <button class="button primary" id="judge-demo" type="button">Judge Demo</button>
+            <span id="connectionMode" class="status-badge blue">Judge workspace ready</span>
+            <button class="icon-button" type="button" aria-label="Notifications">Alerts</button>
+            <div class="avatar" aria-label="Current user">AK</div>
           </div>
         </header>
 
-        <section class="hero-band" aria-label="Product overview">
-          <img src="/assets/command-center.svg" alt="" />
-          <div class="hero-copy">
-            <p class="eyebrow">Band-powered multi-agent workflow</p>
-            <h2>ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance.</h2>
-            <p>
-              Security, legal, finance, procurement, and policy agents collaborate through Band to review
-              unapproved AI tools, gather evidence, and generate an explainable approve, escalate, or block decision.
-            </p>
-            <div class="badge-row" aria-label="Capabilities">
-              <span>Shadow AI governance</span>
-              <span>Vendor risk approval</span>
-              <span>Audit-ready decision packet</span>
-              <span>Human-in-the-loop review</span>
+        <main class="main-content">
+          <section id="inboxView" class="view active-view" aria-labelledby="inboxTitle">
+            <div class="page-header">
+              <div>
+                <p class="eyebrow">Shadow AI Inbox</p>
+                <h1 id="inboxTitle">Unapproved AI tools requiring review</h1>
+                <p class="page-description">
+                  ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents for security, legal, finance, procurement, and compliance.
+                </p>
+                <div class="judge-banner">Judge workspace loaded · Run live verification on any vendor.</div>
+                <div class="header-insights" aria-label="Demo readiness">
+                  <span>Seeded workspace · verify findings with live public evidence</span>
+                  <span>Band agent collaboration room</span>
+                  <span>Evidence-backed decisions</span>
+                  <span>Exportable approval memos</span>
+                </div>
+              </div>
+              <div class="header-actions">
+                <button id="openImportDrawer" class="button secondary" type="button">Import tools</button>
+                <button id="loadJudgeDemo" class="button secondary" type="button">Demo path</button>
+                <button id="runQueueReview" class="button primary" type="button">Run queue review</button>
+              </div>
             </div>
-          </div>
-        </section>
 
-        <div id="app" aria-live="polite"></div>
-      </main>
+            <div id="kpiGrid" class="kpi-grid"></div>
+            <div id="queueProgressBanner"></div>
+
+            <div class="dashboard-grid">
+              <section class="panel queue-panel" aria-label="Shadow AI risk queue">
+                <div class="panel-header">
+                  <div>
+                    <h2>Risk queue</h2>
+                    <p>Ranked by data exposure, evidence gaps, and policy risk.</p>
+                  </div>
+                  <div class="table-tools">
+                    <select id="riskFilter" aria-label="Filter by risk level">
+                      <option value="all">All risk</option>
+                      <option value="Critical">Critical</option>
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                    <button id="resetFilters" class="button ghost" type="button">Reset</button>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table class="risk-table">
+                    <thead>
+                      <tr>
+                        <th>Vendor</th>
+                        <th>Category</th>
+                        <th>Department</th>
+                        <th>Users</th>
+                        <th>Data exposure</th>
+                        <th>Risk</th>
+                        <th>Freshness</th>
+                        <th>Decision</th>
+                        <th>Last reviewed</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="riskQueue"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <aside class="panel activity-panel" aria-label="Review activity">
+                <div class="panel-header compact">
+                  <div>
+                    <h2>Review activity</h2>
+                    <p>Latest evidence operations.</p>
+                  </div>
+                </div>
+                <div id="activityFeed" class="activity-feed"></div>
+              </aside>
+            </div>
+          </section>
+
+          <section id="reviewView" class="view" aria-labelledby="reviewTitle">
+            <button id="backToInbox" class="button ghost back-button" type="button">Back to inbox</button>
+            <div id="reviewHeader" class="review-header"></div>
+
+            <div class="review-tabs" role="tablist" aria-label="Vendor review tabs">
+              <button class="tab active" type="button" data-tab="overview">Overview</button>
+              <button class="tab" type="button" data-tab="agent">Agent Room</button>
+              <button class="tab" type="button" data-tab="evidence">Evidence</button>
+              <button class="tab" type="button" data-tab="policy">Policy Gate</button>
+              <button class="tab" type="button" data-tab="memo">Memo</button>
+              <button class="tab" type="button" data-tab="roi">ROI</button>
+            </div>
+
+            <div class="review-layout">
+              <div class="review-main">
+                <section id="overviewTab" class="tab-panel active-tab-panel"></section>
+                <section id="agentTab" class="tab-panel"></section>
+                <section id="evidenceTab" class="tab-panel"></section>
+                <section id="policyTab" class="tab-panel"></section>
+                <section id="memoTab" class="tab-panel"></section>
+                <section id="roiTab" class="tab-panel"></section>
+              </div>
+              <aside id="decisionSidebar" class="decision-sidebar"></aside>
+            </div>
+          </section>
+
+          <section id="moduleView" class="view" aria-labelledby="moduleTitle">
+            <div id="moduleHeader" class="page-header"></div>
+            <div id="moduleContent"></div>
+          </section>
+        </main>
+      </div>
     </div>
 
-    <template id="download-template"></template>
-    <script type="module" src="/app.js"></script>
+    <div id="importDrawer" class="drawer" aria-hidden="true">
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+        <div class="drawer-header">
+          <div>
+            <p class="eyebrow">Shadow AI intake</p>
+            <h2 id="importTitle">Import tools</h2>
+          </div>
+          <button id="closeImportDrawer" class="icon-button" type="button" aria-label="Close import drawer">Close</button>
+        </div>
+        <p class="drawer-copy">
+          Paste one AI tool per line, or use CSV-style rows:
+          vendor, domain, users, department, data exposure.
+        </p>
+        <textarea id="toolImportInput" rows="10" placeholder="Example:&#10;Writer, writer.com, 18, Legal, Customer contracts&#10;Otter.ai, otter.ai, 42, Sales, Call recordings&#10;Runway, runwayml.com, 9, Brand, Product media"></textarea>
+        <div id="importFeedback" class="note-box" role="status">Ready to import Shadow AI tools.</div>
+        <div class="drawer-actions">
+          <button id="importTools" class="button primary" type="button">Add to inbox</button>
+          <button id="clearImport" class="button secondary" type="button">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="detailDrawer" class="drawer" aria-hidden="true">
+      <div class="drawer-panel wide" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="drawer-header">
+          <div>
+            <p id="detailEyebrow" class="eyebrow">Evidence detail</p>
+            <h2 id="detailTitle">Source detail</h2>
+          </div>
+          <button id="closeDetailDrawer" class="icon-button" type="button" aria-label="Close detail drawer">Close</button>
+        </div>
+        <div id="detailDrawerContent"></div>
+      </div>
+    </div>
+
+    <template id="emptyStateTemplate">
+      <div class="empty-state">
+        <h3>No tools match this view</h3>
+        <p>Adjust filters or import additional Shadow AI tools for review.</p>
+      </div>
+    </template>
+
+    <script src="./app.js"></script>
   </body>
 </html>

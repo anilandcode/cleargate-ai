@@ -1,25 +1,39 @@
-import { cp, mkdir, rm } from "node:fs/promises";
-import { join } from "node:path";
-import { fileURLToPath } from "node:url";
+const fs = require("fs");
+const path = require("path");
 
-const root = fileURLToPath(new URL("..", import.meta.url));
-const dist = join(root, "dist");
+const root = path.join(__dirname, "..");
+const dist = path.join(root, "dist");
 
-const files = ["index.html", "app.js", "styles.css"];
-const directories = ["assets", "lib"];
+const requiredFiles = ["index.html", "app.js", "styles.css"];
 
-await rm(dist, { recursive: true, force: true });
-await mkdir(dist, { recursive: true });
-
-for (const file of files) {
-  await cp(join(root, file), join(dist, file));
+function copyFile(relativePath) {
+  const source = path.join(root, relativePath);
+  const target = path.join(dist, relativePath);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(source, target);
 }
 
-for (const directory of directories) {
-  await cp(join(root, directory), join(dist, directory), {
-    recursive: true,
-    filter: (source) => !source.includes("apiRuntime.js") && !source.includes("apiCore.js")
-  });
+function copyDirectory(relativePath) {
+  const source = path.join(root, relativePath);
+  if (!fs.existsSync(source)) return;
+  const target = path.join(dist, relativePath);
+  fs.cpSync(source, target, { recursive: true });
 }
 
-console.log("Built static ClearGate AI assets into dist/");
+function main() {
+  fs.rmSync(dist, { recursive: true, force: true });
+  fs.mkdirSync(dist, { recursive: true });
+  requiredFiles.forEach(copyFile);
+  copyDirectory("assets");
+
+  const missing = requiredFiles
+    .map((file) => path.join(dist, file))
+    .filter((file) => !fs.existsSync(file));
+  if (missing.length) {
+    throw new Error(`Static build incomplete. Missing ${missing.map((file) => path.relative(root, file)).join(", ")}`);
+  }
+
+  console.log("Static build complete: dist/index.html, dist/app.js, dist/styles.css");
+}
+
+main();
