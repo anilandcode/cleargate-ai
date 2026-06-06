@@ -1,4 +1,4 @@
-name: Validate VendorPulse Gate
+name: Validate ClearGate AI
 
 on:
   push:
