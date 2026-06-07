@@ -5,7 +5,7 @@ const path = require("path");
 const root = path.join(__dirname, "..");
 const checks = [
   ["node", ["--check", "app.js"]],
-  ["node", ["--check", "server.js"]],
+  ["node", ["--check", "local-server.js"]],
   ["node", ["--check", "api/review.js"]],
   ["node", ["--check", "api/escalate.js"]],
   ["node", ["--check", "api/healthz.js"]],
@@ -29,7 +29,7 @@ function scanSecrets() {
     ".env.example",
     "README.md",
     "app.js",
-    "server.js",
+    "local-server.js",
     "lib/review-adapter.js",
     "lib/aiml-adapter.js",
     "lib/workflow-adapter.js",

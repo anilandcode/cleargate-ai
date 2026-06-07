@@ -36,7 +36,7 @@ function assert(condition, message) {
 }
 
 async function main() {
-  const child = spawn(process.execPath, ["server.js"], {
+  const child = spawn(process.execPath, ["local-server.js"], {
     cwd: process.cwd(),
     env: {
       ...process.env,

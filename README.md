@@ -83,7 +83,7 @@ Five-minute judge walkthrough:
 ```mermaid
 flowchart LR
   A["Browser UI<br/>index.html + app.js + styles.css"] --> M["Band Agent Room<br/>browser-local decision packet"]
-  A --> B["/api/review<br/>Vercel function or server.js"]
+  A --> B["/api/review<br/>Vercel function or local-server.js"]
   B --> C["Bright Data adapter<br/>lib/review-adapter.js"]
   C --> D["SERP API<br/>source discovery + public risk search"]
   C --> E["Web Unlocker<br/>official vendor page retrieval"]
@@ -139,7 +139,7 @@ http://localhost:3000
 Run with the local API adapter:
 
 ```bash
-node server.js
+node local-server.js
 ```
 
 Build the static Vercel frontend output:
@@ -148,7 +148,7 @@ Build the static Vercel frontend output:
 npm run build
 ```
 
-The build writes `dist/index.html`, `dist/app.js`, `dist/styles.css`, and `dist/assets/`. Vercel serves that static output while keeping `api/` as file-based serverless functions. `server.js` is only for local development.
+The build writes `dist/index.html`, `dist/app.js`, `dist/styles.css`, and `dist/assets/`. Vercel serves that static output while keeping `api/` as file-based serverless functions. `local-server.js` is only for local development.
 
 Available local endpoints:
 

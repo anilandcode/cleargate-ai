@@ -53,7 +53,7 @@ SLACK_WEBHOOK_URL
 - Build command: `npm run build`
 - Output directory: `dist`
 - Framework preset: static or other/manual
-- Do not use `node server.js` or `npm run start` as the Vercel build/start command.
+- Do not use `node local-server.js`, `npm run local`, or a start command as the Vercel build/start command.
 - Keep `api/` routes as file-based serverless functions.
 
 ## Incognito Verification

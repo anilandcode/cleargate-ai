@@ -1,16 +1,16 @@
-# Graph Report - Vendor Brand Edittion  (2026-06-06)
+# Graph Report - Vendor Brand Edittion  (2026-06-07)
 
 ## Corpus Check
-- 25 files · ~30,034 words
+- 25 files · ~30,037 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 758 nodes · 1667 edges · 36 communities (31 shown, 5 thin omitted)
+- 770 nodes · 1685 edges · 36 communities (31 shown, 5 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2557cbe4`
+- Built from commit: `b7cc3f2f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -55,7 +55,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `qs()` - 32 edges
 2. `qs()` - 28 edges
-3. `buildReview()` - 20 edges
+3. `buildReview()` - 21 edges
 4. `ClearGate AI` - 19 edges
 5. `renderReview()` - 18 edges
 6. `fetchSelectedSourceLive()` - 18 edges
@@ -104,7 +104,7 @@ Nodes (40): brightDataConfig(), brightDataQueries(), brightDataRequest(), buildR
 
 ### Community 6 - "Community 6"
 Cohesion: 0.09
-Nodes (28): Architecture, Bright Data Integration, code:mermaid (flowchart LR), code:bash (python3 -m http.server 3000), code:txt (http://localhost:3000), code:bash (node server.js), code:txt (GET  http://localhost:3000/healthz), code:bash (node scripts/validate-all.js) (+20 more)
+Nodes (28): Architecture, Bright Data Integration, ClearGate AI, code:mermaid (flowchart LR), code:bash (python3 -m http.server 3000), code:txt (http://localhost:3000), code:bash (node server.js), code:txt (GET  http://localhost:3000/healthz) (+20 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.15
@@ -112,7 +112,7 @@ Nodes (26): addEvidenceRecords(), analyzeVendor(), analyzeVendorWithBackend(), a
 
 ### Community 8 - "Community 8"
 Cohesion: 0.19
-Nodes (16): Application Of Technology, Business Model, Business Value, ClearGate AI Submission Copy, Enterprise Buyer, Honest Limitations, Judging Criteria, Long Description (+8 more)
+Nodes (16): Application Of Technology, Business Model, Business Value, ClearGate AI Submission Copy, ClearGate AI Submission Copy, Enterprise Buyer, Honest Limitations, Judging Criteria (+8 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.07
@@ -123,12 +123,12 @@ Cohesion: 0.61
 Nodes (6): assert(), main(), request(), { spawn }, wait(), waitForServer()
 
 ### Community 11 - "Community 11"
-Cohesion: 0.12
-Nodes (26): { createEscalation }, readBody(), requestPayload(), { integrationMode, reviewIntegrationStatus }, { workflowIntegrationStatus }, buildEscalationPayload(), createEscalation(), evidenceLabel() (+18 more)
+Cohesion: 0.08
+Nodes (34): { createEscalation }, readBody(), requestPayload(), { integrationMode, reviewIntegrationStatus }, { workflowIntegrationStatus }, buildEscalationPayload(), createEscalation(), evidenceLabel() (+26 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.26
-Nodes (12): AI/ML API Use, Band Agent Room, Bright Data Use, ClearGate AI Architecture, code:mermaid (flowchart TD), Evidence Normalization, Guardrails, Live Evidence Pipeline (+4 more)
+Nodes (12): AI/ML API Use, Band Agent Room, Bright Data Use, ClearGate AI Architecture, ClearGate AI Architecture, code:mermaid (flowchart TD), Evidence Normalization, Guardrails (+4 more)
 
 ### Community 13 - "Community 13"
 Cohesion: 0.15
@@ -160,7 +160,7 @@ Nodes (10): 1. Problem, 2. Product Thesis, 3. Workflow, 4. Bright Data Infrastru
 
 ### Community 20 - "Community 20"
 Cohesion: 0.08
-Nodes (24): Architecture, Band Agent Room, Bright Data Integration, ClearGate AI, code:mermaid (flowchart LR), code:bash (python3 -m http.server 3000), code:txt (http://localhost:3000), code:bash (node server.js) (+16 more)
+Nodes (24): Architecture, Band Agent Room, Bright Data Integration, ClearGate AI, code:mermaid (flowchart LR), code:bash (python3 -m http.server 3000), code:txt (http://localhost:3000), code:bash (node local-server.js) (+16 more)
 
 ### Community 21 - "Community 21"
 Cohesion: 0.28
@@ -203,21 +203,21 @@ Cohesion: 0.33
 Nodes (7): cleanImportValue(), ensureImportedVendor(), inferCategory(), inferPolicyProfile(), initials(), normalizeDomainInput(), parseImportedTool()
 
 ## Knowledge Gaps
-- **190 isolated node(s):** `fs`, `http`, `path`, `{ buildReview, integrationMode, reviewIntegrationStatus }`, `{ createEscalation, workflowIntegrationStatus }` (+185 more)
+- **198 isolated node(s):** `reviewSteps`, `vendors`, `evidenceByVendor`, `bandRoomsByVendor`, `policyProfiles` (+193 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `buildReview()` connect `Community 9` to `Community 16`, `Community 5`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `buildReview()` connect `Community 9` to `Community 16`, `Community 11`, `Community 5`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `createEscalation()` connect `Community 11` to `Community 5`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `extractGroundedFinding()` connect `Community 3` to `Community 9`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **What connects `fs`, `http`, `path` to the rest of the system?**
-  _190 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `reviewSteps`, `vendors`, `evidenceByVendor` to the rest of the system?**
+  _198 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

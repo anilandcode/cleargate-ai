@@ -7,7 +7,7 @@ ClearGate AI is a dependency-light vanilla HTML/CSS/JS app with a browser-local 
 - `index.html`: application shell, navigation, import drawer, review tabs, detail drawer.
 - `styles.css`: enterprise SaaS visual system and responsive layout.
 - `app.js`: seeded workspace, local state, intake parsing, Band agent room, policy rules, evidence rendering, memo export, and browser-side workflow orchestration.
-- `server.js`: dependency-free local HTTP server for static files and API routes. It is for local development only.
+- `local-server.js`: dependency-free local HTTP server for static files and API routes. It is for local development only.
 - `api/review.js`: Vercel-compatible review API route.
 - `api/escalate.js`: Vercel-compatible escalation package route.
 - `lib/review-adapter.js`: server-side Bright Data adapter and evidence normalization.
@@ -149,7 +149,7 @@ No LLM decides the final outcome in the current implementation.
 - Live review credentials are read only from server-side environment variables.
 - Slack webhook and AI/ML API credentials are read only from server-side environment variables.
 - Vercel runs `npm run build`, serves static assets from `dist/`, and keeps `api/` routes as file-based serverless functions.
-- `server.js` is not the deployed app server on Vercel.
+- `local-server.js` is not the deployed app server on Vercel.
 - Without Bright Data credentials, the seeded judge workspace remains usable and clearly labeled.
 
 ## Guardrails

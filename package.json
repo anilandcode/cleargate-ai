@@ -5,7 +5,7 @@
   "description": "ClearGate AI turns unapproved AI tools into audit-ready approval decisions using Band-powered agents.",
   "scripts": {
     "build": "node scripts/build-static.js",
-    "start": "node server.js",
+    "local": "node local-server.js",
     "validate": "node scripts/validate-all.js",
     "smoke": "node scripts/smoke-server.js"
   },

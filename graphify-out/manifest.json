@@ -1,11 +1,11 @@
 {
-  "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/server.js": {
-    "mtime": 1780743659.9212213,
-    "hash": "47ace628077bc172fd85151f1954de5c"
-  },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/app.js": {
     "mtime": 1780743258.9552174,
     "hash": "3cea27296b85e0d825368b54252b66b0"
+  },
+  "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/local-server.js": {
+    "mtime": 1780743659.9212213,
+    "hash": "47ace628077bc172fd85151f1954de5c"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/scripts/test-review-adapter.js": {
     "mtime": 1780742965.1181114,
@@ -16,8 +16,8 @@
     "hash": "438a320f32fc1fc1ff53138ce22f336c"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/scripts/validate-all.js": {
-    "mtime": 1780742965.120452,
-    "hash": "e2b1da7fd6d86d756ddbc324bb205c5b"
+    "mtime": 1780818647.5241132,
+    "hash": "3d866531792f2f6f0d2ad4089c3a042d"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/scripts/build-static.js": {
     "mtime": 1780743307.9428647,
@@ -28,8 +28,8 @@
     "hash": "4ecbb9d24a919a2156635ce4ff241fb4"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/scripts/smoke-server.js": {
-    "mtime": 1780742965.1156025,
-    "hash": "b673b3f29d2963274c2b1a78a6d56b26"
+    "mtime": 1780818654.6494598,
+    "hash": "7f0e3868a16517e54bfbde76e0574b69"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/scripts/test-app-contract.js": {
     "mtime": 1780743460.585176,
@@ -64,16 +64,16 @@
     "hash": "4ce8c39e37dec838b5e5a1eb3eb41c0d"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/README.md": {
-    "mtime": 1780743363.1233852,
-    "hash": "501ae38394ecdd1a6c49c032cb60c299"
+    "mtime": 1780818670.6046522,
+    "hash": "554e7b3d293cb7fb6d11a363d742211b"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/design.md": {
     "mtime": 1780743513.4483209,
     "hash": "464658b5d0ba78c896432d6dcc823cf1"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/docs/ARCHITECTURE.md": {
-    "mtime": 1780743384.6059246,
-    "hash": "000282f526ae8562a821d8c743c52bbc"
+    "mtime": 1780818676.911255,
+    "hash": "4e5d6518fbc4d93c3d827fb82654d034"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/docs/RISK_REGISTER.md": {
     "mtime": 1780742965.1107035,
@@ -100,8 +100,8 @@
     "hash": "89cbcc0aa83b9887323b2bf8f94c7c00"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/docs/DEPLOYMENT_CHECKLIST.md": {
-    "mtime": 1780743398.9434023,
-    "hash": "0567e384dcd43aa23c2a3315eb435c54"
+    "mtime": 1780818683.797655,
+    "hash": "9649a1c8d332ee98ad8a037c4a8d3be5"
   },
   "/Users/apple/Documents/AI-Demos/Vendor Brand Edittion/assets/cleargate-mark.svg": {
     "mtime": 1780743336.01409,
